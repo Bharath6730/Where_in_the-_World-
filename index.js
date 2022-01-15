@@ -76,6 +76,7 @@ var filterItems = document.getElementsByClassName("dropDownItems")
 for (let i = 0; i < filterItems.length; i++) {
     const element = filterItems[i];
     element.addEventListener("click",()=>{
+        document.getElementsByClassName("dropDown")[0].classList.toggle("hide")
         var filtername = element.childNodes.item(1).textContent
 
         if (filtername == "All"){

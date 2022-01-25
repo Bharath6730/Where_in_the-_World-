@@ -19,6 +19,9 @@ body{
     transition: color 400ms ease-in-out;
 }
 
+p,h1,h2,h3,h3,img,.backbuton,.buton{
+    z-index: 1;
+}
 .hide{
     display: none;
 }
@@ -182,6 +185,7 @@ main{
 .contentBox img{
     width: 100%;
     height: 50%;
+    z-index: 1;
 }
 .contentInside{
     margin-top: 1rem;
@@ -403,7 +407,7 @@ header,.searchBar,.filterDiv,.contentBox{
     width: 100%;
     height: 200vh;
     clip-path: circle(2rem at 93.4% 2.2rem);
-    transition: clip-path 400ms ease-in-out;
+    transition: clip-path 1000ms ease-in-out;
     pointer-events: none;
 }
 .clipHeader{
@@ -416,9 +420,6 @@ header,.searchBar,.filterDiv,.contentBox{
     background-color: var(--clipElement-background);
 }
 
-.contentBox > img{
-    z-index: 1;
-}
-.contentInside>h3,p{
+.contentInside>h3{
     z-index: 1;
 }

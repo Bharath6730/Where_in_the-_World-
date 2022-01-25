@@ -233,6 +233,9 @@ document.getElementById("headerTitle").addEventListener("click",()=>{
 
 // Theme
 document.getElementsByClassName("mode")[0].addEventListener("click",()=>{
+    document.querySelectorAll(".clip").forEach(item=>{
+        item.style.visiblity = "visible"
+    })
     if (document.getElementsByClassName("modeType")[0].textContent == "Dark Mode"){
         document.getElementsByClassName("mode")[0].innerHTML = "<i class='far fa-lightbulb'></i><h4 class='modeType'>Light Mode</h4>"
         document.documentElement.style.setProperty("--clipElement-background","hsl(209, 23%, 22%)")
@@ -242,7 +245,7 @@ document.getElementsByClassName("mode")[0].addEventListener("click",()=>{
         setTimeout(()=>{
             document.documentElement.style.setProperty("--body-color","hsl(207, 26%, 17%)")
             document.documentElement.style.setProperty("--element-color","hsl(209, 23%, 22%)") 
-        },400)  
+        },1000)  
         document.querySelectorAll(".clip").forEach(item=>{
             item.style.clipPath = "circle(150% at 93.4% 2.2rem)"
         })
@@ -255,12 +258,19 @@ document.getElementsByClassName("mode")[0].addEventListener("click",()=>{
         setTimeout(()=>{
             document.documentElement.style.setProperty("--clipElement-background","white")
             document.documentElement.style.setProperty("--clipMain-background","hsl(0, 0%, 98%)") 
-        },400) 
+        },1000) 
         document.querySelectorAll(".clip").forEach(item=>{
             item.style.clipPath = "circle(2rem at 93.4% 2.2rem)"
         })
+
+        setTimeout(()=>{
+            document.querySelectorAll(".clip").forEach(item=>{
+                item.style.visiblity = "hidden"
+            })
+        },450)
     }
 
 })
 
 
+console.log("check")

@@ -3,6 +3,9 @@
     --font-color: hsl(200, 15%, 8%);
     --element-color: white;
     --element-shadow: hsl(0, 0%, 80%);
+    --inset-start:inset(0% 6.5% 0 93.4%);
+    --clipElement-background:white;
+    --clipMain-background:hsl(0, 0%, 98%);
 }
 
 body{
@@ -13,6 +16,7 @@ body{
     margin: 0%;
     background-color: var(--body-color);
     color: var(--font-color);
+    transition: color 400ms ease-in-out;
 }
 
 .hide{
@@ -28,6 +32,7 @@ header{
     background-color: var(--element-color);
     justify-content: space-between;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 header  h2{
     position: relative;
@@ -48,6 +53,8 @@ header  h2{
 
 /* Contents */
 main{
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
 }
 
@@ -70,6 +77,9 @@ main{
     display: flex;
     gap: 0.8rem;
     box-shadow:  2px 2px 2px var(--element-shadow);
+    transition: background-color 400ms ease-in-out,
+                box-shadow 400ms ease-in-out;
+
 }
 .searchBar i{
     position: relative;
@@ -84,6 +94,7 @@ main{
     font-family: inherit;
     font-size: large;
     color: var(--font-color);
+    transition: color 400ms ease-in-out;
 }
 #searchInput:focus {
     outline: none;
@@ -108,6 +119,9 @@ main{
     justify-content: space-evenly;
     box-shadow:  2px 2px 2px var(--element-shadow);
     cursor: pointer;
+    transition: background-color 400ms ease-in-out,
+                box-shadow 400ms ease-in-out;
+    
 }
 .filter p {
     font-weight: 600;
@@ -120,6 +134,8 @@ main{
     width: 100%;
     z-index: 1;
     box-shadow:  2px 2px 2px var(--element-shadow);
+    transition: background-color 400ms ease-in-out,
+                box-shadow 400ms ease-in-out;
 }
 .dropDownItems{
     width: 100%;
@@ -150,6 +166,7 @@ main{
     grid-gap: 2rem;
 }
 .contentBox{
+    position: relative;
     /* width: 15.625rem;
     height: 18.75rem; */
     background-color: var(--element-color);
@@ -159,6 +176,8 @@ main{
     border-radius: 00.3rem;
     overflow: hidden;
     cursor: pointer;
+    transition: background-color 400ms ease-in-out,
+                box-shadow 400ms ease-in-out;
 }
 .contentBox img{
     width: 100%;
@@ -196,6 +215,8 @@ main{
     border-radius: 0.1rem;
     box-shadow:  2px 2px 2px var(--element-shadow);
     cursor: pointer;
+    transition: background-color 400ms ease-in-out,
+                box-shadow 400ms ease-in-out;
 }
 .backbuton i{
     position: relative;
@@ -280,6 +301,8 @@ main{
     align-items: center;
     padding: 0 0.3rem ;
     width: fit-content;
+    transition: background-color 400ms ease-in-out,
+                box-shadow 400ms ease-in-out;
 }
 .buton p {
     height: fit-content;
@@ -365,4 +388,37 @@ main{
     .borderCountries{
         grid-template-columns: repeat(2,auto);
     }
+}
+header > h2,.mode{
+    z-index: 1;
+}
+header,.searchBar,.filterDiv,.contentBox{
+    z-index: 1;
+}
+
+.clip{
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 200vh;
+    clip-path: circle(2rem at 93.4% 2.2rem);
+    transition: clip-path 400ms ease-in-out;
+    pointer-events: none;
+}
+.clipHeader{
+    background-color: var(--clipElement-background);
+}
+.clipMain{
+    background-color: var(--clipMain-background);
+}
+.clipContent{
+    background-color: var(--clipElement-background);
+}
+
+.contentBox > img{
+    z-index: 1;
+}
+.contentInside>h3,p{
+    z-index: 1;
 }

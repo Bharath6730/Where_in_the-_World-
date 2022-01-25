@@ -30,7 +30,6 @@ function createBox(json) {
     var par = document.getElementsByClassName("content")[0]
     par.appendChild(temp)
     temp.innerHTML = "<img src=" + imgSrc + " alt=''> <div class='contentInside'><h3>" + country + "</h3>  <p class='pfirstChild'><b>Population : </b>"+ population +"</p>        <p><b>Region : </b>" + region + "</p>    <p><b>Capital : </b>" + capital + " </p> </div>"
-
     // Appending vars for later use
     names.push(country)
     regions.forEach(i=>{
@@ -76,7 +75,6 @@ var filterItems = document.getElementsByClassName("dropDownItems")
 for (let i = 0; i < filterItems.length; i++) {
     const element = filterItems[i];
     element.addEventListener("click",()=>{
-        document.getElementsByClassName("dropDown")[0].classList.toggle("hide")
         var filtername = element.childNodes.item(1).textContent
 
         if (filtername == "All"){
@@ -237,17 +235,32 @@ document.getElementById("headerTitle").addEventListener("click",()=>{
 document.getElementsByClassName("mode")[0].addEventListener("click",()=>{
     if (document.getElementsByClassName("modeType")[0].textContent == "Dark Mode"){
         document.getElementsByClassName("mode")[0].innerHTML = "<i class='far fa-lightbulb'></i><h4 class='modeType'>Light Mode</h4>"
-        document.documentElement.style.setProperty("--body-color","hsl(207, 26%, 17%)")
-        document.documentElement.style.setProperty("--element-color","hsl(209, 23%, 22%)")
-        document.documentElement.style.setProperty("--font-color","hsl(0, 0%, 100%)")  
-        document.documentElement.style.setProperty("--element-shadow","hsl(209, 23%, 20%)")  
-
+        document.documentElement.style.setProperty("--clipElement-background","hsl(209, 23%, 22%)")
+        document.documentElement.style.setProperty("--clipMain-background","hsl(207, 26%, 17%)")
+        document.documentElement.style.setProperty("--element-shadow","hsl(209, 23%, 20%)")
+        document.documentElement.style.setProperty("--font-color","hsl(0, 0%, 100%)") 
+        setTimeout(()=>{
+            document.documentElement.style.setProperty("--body-color","hsl(207, 26%, 17%)")
+            document.documentElement.style.setProperty("--element-color","hsl(209, 23%, 22%)") 
+        },400)  
+        document.querySelectorAll(".clip").forEach(item=>{
+            item.style.clipPath = "circle(150% at 93.4% 2.2rem)"
+        })
     }else{
         document.getElementsByClassName("mode")[0].innerHTML = "<i class='far fa-moon'></i><h4 class='modeType'>Dark Mode</h4>"
-        document.documentElement.style.setProperty("--body-color","hsl(0, 0%, 98%)")
         document.documentElement.style.setProperty("--element-color","white")
+        document.documentElement.style.setProperty("--body-color","hsl(0, 0%, 98%)")
         document.documentElement.style.setProperty("--font-color","hsl(200, 15%, 8%)")  
         document.documentElement.style.setProperty("--element-shadow","hsl(0, 0%, 80%)")  
-    
+        setTimeout(()=>{
+            document.documentElement.style.setProperty("--clipElement-background","white")
+            document.documentElement.style.setProperty("--clipMain-background","hsl(0, 0%, 98%)") 
+        },400) 
+        document.querySelectorAll(".clip").forEach(item=>{
+            item.style.clipPath = "circle(2rem at 93.4% 2.2rem)"
+        })
     }
+
 })
+
+

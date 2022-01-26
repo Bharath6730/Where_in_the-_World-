@@ -183,6 +183,8 @@ main{
     border-radius: 00.3rem;
     overflow: hidden;
     cursor: pointer;
+}
+.animateDiv{
     transition: background-color 400ms ease-in-out,
                 box-shadow 400ms ease-in-out;
 }

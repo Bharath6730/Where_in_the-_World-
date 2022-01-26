@@ -14,7 +14,7 @@ var country,capital,population,region,imgSrc,subregion,nativeName,topDomain,curr
 
 
 // Creating and displaying elements 
-function createBox(json) {
+function createBox(json,num) {
     // Getting info
     country = json.name
     capital = json.capital
@@ -25,6 +25,11 @@ function createBox(json) {
 
     // Creating div and appending
     var temp = document.createElement("div")
+    if (num < 9){
+        temp.className = "contentBox animateDiv"
+    }else{
+        temp.className = "contentBox"
+    }
     temp.className = "contentBox"
     temp.setAttribute("id",json.name)
     var par = document.getElementsByClassName("content")[0]
@@ -46,7 +51,7 @@ fetch("https://restcountries.com/v2/all")
     .then(data=>{
         countryData = data
         for (let i = 0; i < data.length; i++) {
-            createBox(data[i])
+            createBox(data[i],i)
         }
         sepPage()
     })
@@ -233,45 +238,49 @@ document.getElementById("headerTitle").addEventListener("click",()=>{
 
 
 // Theme
+var animationCompleted = true
 document.getElementsByClassName("mode")[0].addEventListener("click",()=>{
-    document.querySelectorAll(".clip").forEach(item=>{
-        item.style.visiblity = "visible"
-    })
-    if (document.getElementsByClassName("modeType")[0].textContent == "Dark Mode"){
-        document.getElementsByClassName("mode")[0].innerHTML = "<i class='far fa-lightbulb'></i><h4 class='modeType'>Light Mode</h4>"
-        document.documentElement.style.setProperty("--clipElement-background","hsl(209, 23%, 22%)")
-        document.documentElement.style.setProperty("--clipMain-background","hsl(207, 26%, 17%)")
-        document.documentElement.style.setProperty("--element-shadow","hsl(209, 23%, 20%)")
-        document.documentElement.style.setProperty("--font-color","hsl(0, 0%, 100%)") 
+    // document.querySelectorAll(".clip").forEach(item=>{
+    //     item.style.visiblity = "visible"
+    // })
+    if (animationCompleted === true){
+        animationCompleted = false
         setTimeout(()=>{
-            document.documentElement.style.setProperty("--body-color","hsl(207, 26%, 17%)")
-            document.documentElement.style.setProperty("--element-color","hsl(209, 23%, 22%)") 
-        },1000)  
-        document.querySelectorAll(".clip").forEach(item=>{
-            item.style.clipPath = "circle(150% at 93.4% 2.2rem)"
-        })
-    }else{
-        document.getElementsByClassName("mode")[0].innerHTML = "<i class='far fa-moon'></i><h4 class='modeType'>Dark Mode</h4>"
-        document.documentElement.style.setProperty("--element-color","white")
-        document.documentElement.style.setProperty("--body-color","hsl(0, 0%, 98%)")
-        document.documentElement.style.setProperty("--font-color","hsl(200, 15%, 8%)")  
-        document.documentElement.style.setProperty("--element-shadow","hsl(0, 0%, 80%)")  
-        setTimeout(()=>{
-            document.documentElement.style.setProperty("--clipElement-background","white")
-            document.documentElement.style.setProperty("--clipMain-background","hsl(0, 0%, 98%)") 
-        },1000) 
-        document.querySelectorAll(".clip").forEach(item=>{
-            item.style.clipPath = "circle(2rem at 93.4% 2.2rem)"
-        })
-
-        setTimeout(()=>{
+            animationCompleted = true
+        },1000)
+        if (document.getElementsByClassName("modeType")[0].textContent == "Dark Mode"){
+            document.getElementsByClassName("mode")[0].innerHTML = "<i class='far fa-lightbulb'></i><h4 class='modeType'>Light Mode</h4>"
+            document.documentElement.style.setProperty("--clipElement-background","hsl(209, 23%, 22%)")
+            document.documentElement.style.setProperty("--clipMain-background","hsl(207, 26%, 17%)")
+            document.documentElement.style.setProperty("--font-color","hsl(0, 0%, 100%)") 
+            setTimeout(()=>{
+                document.documentElement.style.setProperty("--body-color","hsl(207, 26%, 17%)")
+                document.documentElement.style.setProperty("--element-color","hsl(209, 23%, 22%)") 
+                document.documentElement.style.setProperty("--element-shadow","hsl(209, 23%, 20%)")
+            },1000)  
             document.querySelectorAll(".clip").forEach(item=>{
-                item.style.visiblity = "hidden"
+                item.style.clipPath = "circle(150% at 93.4% 2.2rem)"
             })
-        },450)
+        }else{
+            document.getElementsByClassName("mode")[0].innerHTML = "<i class='far fa-moon'></i><h4 class='modeType'>Dark Mode</h4>"
+            document.documentElement.style.setProperty("--element-color","white")
+            document.documentElement.style.setProperty("--body-color","hsl(0, 0%, 98%)")
+            document.documentElement.style.setProperty("--font-color","hsl(200, 15%, 8%)")  
+            document.documentElement.style.setProperty("--element-shadow","hsl(0, 0%, 80%)")  
+            setTimeout(()=>{
+                document.documentElement.style.setProperty("--clipElement-background","white")
+                document.documentElement.style.setProperty("--clipMain-background","hsl(0, 0%, 98%)") 
+            },1000) 
+            document.querySelectorAll(".clip").forEach(item=>{
+                item.style.clipPath = "circle(2rem at 93.4% 2.2rem)"
+            })
+    }
+
+        // setTimeout(()=>{
+        //     document.querySelectorAll(".clip").forEach(item=>{
+        //         item.style.visiblity = "hidden"
+        //     })
+        // },450)
     }
 
 })
-
-
-console.log("check")

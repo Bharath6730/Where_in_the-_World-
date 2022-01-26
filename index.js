@@ -91,6 +91,7 @@ for (let i = 0; i < filterItems.length; i++) {
                 }
             })
         }
+        document.getElementsByClassName("dropDown")[0].classList.toggle("hide")
     })
     
 }
